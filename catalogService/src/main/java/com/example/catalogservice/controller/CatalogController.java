@@ -1,6 +1,5 @@
 package com.example.catalogservice.controller;
 
-
 import com.example.catalogservice.entity.Product;
 import com.example.catalogservice.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class CatalogController {
 
     @GetMapping
     public Product getById(@RequestParam("uniqId") String uniqId) {
-        return catalogService.getData().get(uniqId);
 
+        return catalogService.getByUniqId(uniqId);
     }
 }
