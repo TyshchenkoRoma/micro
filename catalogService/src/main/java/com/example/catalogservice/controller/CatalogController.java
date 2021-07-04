@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/catalog")
 public class CatalogController {
@@ -20,4 +22,12 @@ public class CatalogController {
 
         return catalogService.getByUniqId(uniqId);
     }
+
+    @GetMapping("/getBySku")
+    public List<Product> getBySku(@RequestParam("sku") String sku) {
+
+        return catalogService.getBySku(sku);
+    }
+
+
 }
