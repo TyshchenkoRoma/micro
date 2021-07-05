@@ -17,5 +17,7 @@
 
     <modules>
         <module>catalogService</module>
+        <module>inventoryService</module>
+        <module>productService</module>
     </modules>
 </project>
