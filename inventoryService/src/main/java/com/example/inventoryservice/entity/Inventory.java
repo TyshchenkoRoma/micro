@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "product")
+@Table(name = "inventory")
 @Entity
 public class Inventory {
 
@@ -50,4 +50,8 @@ public class Inventory {
 
     @Column
     private Boolean available;
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
 }

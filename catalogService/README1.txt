@@ -1,5 +1,5 @@
 docker script:
-docker run --name mysqlInventory -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DATABASE=inventorydb -p 3307:3307 -d mysql/mysql-server:8.0
+docker run --name mysqlInventory1 -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_DATABASE=inventorydb1 -p 3307:3306 -d mysql/mysql-server:8.0
 
 
 Capstone project: Microservices on Spring Boot
