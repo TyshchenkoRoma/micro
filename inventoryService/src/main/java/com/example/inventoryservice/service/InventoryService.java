@@ -10,5 +10,5 @@ public interface InventoryService {
 
     void fillRandomAvailability();
 
-    List<Inventory> getListInventory( List<String> idList);
+    List<Inventory> getListInventory(List<String> idList);
 }

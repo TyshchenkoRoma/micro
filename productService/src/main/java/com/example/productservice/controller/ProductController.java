@@ -47,9 +47,7 @@ public class ProductController {
 
     @GetMapping("/avprodbyid")
     public List<Product> getAvByListId(@RequestParam("idList") List<String> idList) {
-
         List<Product> products = new ArrayList<>();
-
         List<String> avList = productService.getAvailId(idList);
         for (String id : avList) {
           products.add(  catalogClient.getByUniqId(id));
@@ -59,12 +57,8 @@ public class ProductController {
 
     @GetMapping("/avprodbysku")
     public List<Product> getAvBySku(@RequestParam("sku") String sku) {
-
-
         List<Product> products = new ArrayList<>();
-        List <String> listId = productService.getAvailId(sku);
-
-        List<String> avList = productService.getAvailId(listId);
+        List<String> avList = productService.getAvailId(productService.getAvailId(sku));
         for (String id : avList) {
             products.add(  catalogClient.getByUniqId(id));
         }

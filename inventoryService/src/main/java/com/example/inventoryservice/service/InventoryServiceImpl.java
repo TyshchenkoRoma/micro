@@ -30,9 +30,9 @@ public class InventoryServiceImpl implements InventoryService {
 
     @Override
     public List<Inventory> getListInventory(List<String> idList) {
-        List< Inventory> invList = new ArrayList<>();
-        for (String id: idList) {
-         invList.add( inventoryRepository.findByUniq_id(id));
+        List<Inventory> invList = new ArrayList<>();
+        for (String id : idList) {
+            invList.add(inventoryRepository.findByUniq_id(id));
         }
         return invList;
     }
