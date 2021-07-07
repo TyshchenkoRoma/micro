@@ -57,5 +57,19 @@ public class ProductController {
         return products;
     }
 
+    @GetMapping("/avprodbysku")
+    public List<Product> getAvBySku(@RequestParam("sku") String sku) {
+
+
+        List<Product> products = new ArrayList<>();
+        List <String> listId = productService.getAvailId(sku);
+
+        List<String> avList = productService.getAvailId(listId);
+        for (String id : avList) {
+            products.add(  catalogClient.getByUniqId(id));
+        }
+        return products;
+    }
+
 
 }

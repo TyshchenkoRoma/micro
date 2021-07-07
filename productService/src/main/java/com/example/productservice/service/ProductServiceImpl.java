@@ -1,8 +1,8 @@
 package com.example.productservice.service;
 
+import com.example.productservice.client.CatalogClient;
 import com.example.productservice.client.InventoryClient;
 import com.example.productservice.dto.Inventory;
-import com.example.productservice.dto.Product;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     InventoryClient inventoryClient;
+
+    @Autowired
+    CatalogClient catalogClient;
 
 //    @Override
 //    public List<Product> getAvailableProducts(List<Product> prodList, List<Inventory> invList) {
@@ -42,5 +45,10 @@ public class ProductServiceImpl implements ProductService {
         avL = inventoryClient.getListAvailability(id).stream().filter(s->s.getAvailable()==true)
                 .map(s->s.getUniqId()).collect(Collectors.toList());
         return avL;
+    }
+
+    @Override
+    public List<String> getAvailId(String sku) {
+        return catalogClient.getBySku(sku).stream().map(s->s.getUniqId()).collect(Collectors.toList());
     }
 }
