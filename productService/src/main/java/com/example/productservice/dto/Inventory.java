@@ -2,11 +2,13 @@ package com.example.productservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class Inventory {
     private Long id;
     private String uniqId;
