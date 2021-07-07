@@ -18,11 +18,11 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public Product getByUniqId(String uniqId) {
 
-       return productRepository.findByUniq_id(uniqId);
+        return productRepository.findByUniq_id(uniqId);
     }
 
     @Override
     public List<Product> getBySku(String sku) {
-        return productRepository.findBySku( sku);
+        return productRepository.findBySku(sku);
     }
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -17,20 +18,31 @@ public class InventoryServiceImpl implements InventoryService {
     InventoryRepository inventoryRepository;
 
     @Override
-    public Inventory getByUniqId(String uniqId) {
-        return inventoryRepository.findByUniq_id(uniqId);
+    public List<Inventory> getByUniqId() {
+        return inventoryRepository.findAllInventory();
     }
 
     @Override
     public void fillRandomAvailability() {
         List<String> uniqIdList = inventoryRepository.findAllUniqId();
-        fillRandomAvailabilityByUniqId(uniqIdList.get(0));
+        fillRandomAvailabilityByUniqId(uniqIdList);
     }
 
-    private Long fillRandomAvailabilityByUniqId(String uniqId) {
-        Inventory inventory = inventoryRepository.findByUniq_id(uniqId);
-        inventory.setAvailable(new Random().nextBoolean());
-        inventoryRepository.save(inventory);
-        return inventory.getId();
+    @Override
+    public List<Inventory> getListInventory(List<String> idList) {
+        List< Inventory> invList = new ArrayList<>();
+        for (String id: idList) {
+         invList.add( inventoryRepository.findByUniq_id(id));
+        }
+        return invList;
+    }
+
+    private void fillRandomAvailabilityByUniqId(List<String> uniqIdList) {
+        Inventory inventory;
+        for (String id : uniqIdList) {
+            inventory = inventoryRepository.findByUniq_id(id);
+            inventory.setAvailable(new Random().nextBoolean());
+            inventoryRepository.save(inventory);
+        }
     }
 }

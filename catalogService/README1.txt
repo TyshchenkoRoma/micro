@@ -27,6 +27,7 @@ Product application: returns product data to end-clients. The application expose
  The REST service makes REST call to catalog application to get product data by ‘uniq_id’
  or by ‘sku’, and make a call to the inventory application to get product availability
  and filter out only available product before returning.
+
 Use Netflix Eureka for registering applications and discovering them for inter-component REST calls.
 Use Netflix Hystrix for protecting inter-component REST calls from the product application. The fallback behavior is supposed to result in ‘503 service unavailable’ in case of unavailability of any dependant services. Use synthetic delays (sleep time) in the inventory and catalog applications to increase response latency. Play with ‘execution.isolation.thread.timeoutInMilliseconds’, ‘coreSize’, ‘circuitBreaker.requestVolumeThreshold’ and ‘circuitBreaker.sleepWindowInMilliseconds’ to simulate circuit breaker behavior.
 Use request tracing through the inter-component REST calls and the Zipkin server for monitoring request flow and latency.
@@ -53,3 +54,23 @@ VALUES (13,
         'Alfred Dunner',
         5,
         '{\"review\"=>[{\"review_1\"=>\"You never have to worry about the fit...Alfred Dunner clothing sizes are true to size and fits perfectly. Great value for the money.\"}');
+
+
+
+1,'b6c0b6bea69c722939585baeac73c13d','pp5006380337'
+2,93e5272c51d8cce02597e3ce67b7ad0a,pp5006380337
+3,72f8aa81a2364e6cd5bff45979aefc34,pp5006790242
+4,505e6633d81f2cb7400c0cfa0394c427,pp5006380337
+5,d969a8542122e1331e304b09f81a83f6,pp5006380337
+6,5abf9d28e9e0404369ece10807d99d0e,pp5006790242
+7,82d8a9a627e55ba97a1051068c9823e7,pp5006790242
+8,7b16da6eaeca0ae2d107e712cfe5141d,pp5006790242
+9,dc414a69fee993fd20d74a979dfea23d,pp5006790242
+10,3c291110238ee460390c7002e4622ade,pp5006790242
+11,5d8646dbb6d4561dd5f9176f2632edc3,pp5006790242
+12,ca61adb53a4b26f605f10fab385bea09,pp5006790242
+13,72f8aa81a2364e6cd5bff45979aefc33,pp5006790242
+
+
+insert product( id, uniq_id, sku)
+VALUES (1,b6c0b6bea69c722939585baeac73c13d,pp5006380337);

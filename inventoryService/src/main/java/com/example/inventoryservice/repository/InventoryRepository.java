@@ -14,6 +14,9 @@ public interface InventoryRepository extends CrudRepository<Inventory, String> {
     @Query(value = "select * from inventory where uniq_id = :uniqId", nativeQuery = true)
     Inventory findByUniq_id(@Param("uniqId") String uniqId);
 
+    @Query(value = "select * from inventory ", nativeQuery = true)
+    List <Inventory> findAllInventory();
+
     Inventory save(Inventory inventory);
 
     @Query(value = "select uniq_id from inventory", nativeQuery = true)

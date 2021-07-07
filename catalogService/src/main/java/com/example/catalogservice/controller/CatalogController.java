@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/catalog")
 public class CatalogController {
 
     @Autowired
     private CatalogService catalogService;
 
-    @GetMapping
+    @GetMapping("/byid")
     public Product getById(@RequestParam("uniqId") String uniqId) {
 
         return catalogService.getByUniqId(uniqId);
     }
 
-    @GetMapping("/getBySku")
+    @GetMapping("/getbysku")
     public List<Product> getBySku(@RequestParam("sku") String sku) {
 
         return catalogService.getBySku(sku);
