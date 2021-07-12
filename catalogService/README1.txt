@@ -29,7 +29,11 @@ Product application: returns product data to end-clients. The application expose
  and filter out only available product before returning.
 
 Use Netflix Eureka for registering applications and discovering them for inter-component REST calls.
-Use Netflix Hystrix for protecting inter-component REST calls from the product application. The fallback behavior is supposed to result in ‘503 service unavailable’ in case of unavailability of any dependant services. Use synthetic delays (sleep time) in the inventory and catalog applications to increase response latency. Play with ‘execution.isolation.thread.timeoutInMilliseconds’, ‘coreSize’, ‘circuitBreaker.requestVolumeThreshold’ and ‘circuitBreaker.sleepWindowInMilliseconds’ to simulate circuit breaker behavior.
+Use Netflix Hystrix for protecting inter-component REST calls from the product application.
+ The fallback behavior is supposed to result in ‘503 service unavailable’ in case of unavailability of any dependant services.
+  Use synthetic delays (sleep time) in the inventory and catalog applications to increase response latency.
+   Play with ‘execution.isolation.thread.timeoutInMilliseconds’, ‘coreSize’, ‘circuitBreaker.requestVolumeThreshold’
+   and ‘circuitBreaker.sleepWindowInMilliseconds’ to simulate circuit breaker behavior.
 Use request tracing through the inter-component REST calls and the Zipkin server for monitoring request flow and latency.
 Project assessment
 Walk through application testing scenario and make sure they pass correctly (items #3-5).
