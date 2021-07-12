@@ -1,0 +1,50 @@
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: '60000'
+        readTimeout: '60000'
+        loggerLevel: 'full'
+
+logging:
+  level:
+    org.springframework.cloud.gateway: 'TRACE'
+    org.springframework.http.server.reactive: 'DEBUG'
+    org.springframework.web.reactive: 'DEBUG'
+    reactor.ipc.netty: 'DEBUG'
+    reactor.netty: 'DEBUG'
+
+server:
+  port: '8089'
+
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: 'false'
+    gateway:
+      routes:
+        - id: 'catalog-service'
+          uri: 'http://localhost:8080'
+          predicates:
+            - 'Path=/catalog/**'
+        - id: 'product-service'
+          uri: 'http://localhost:8083'
+          predicates:
+            - 'Path=/product/**'
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+  application:
+    name: 'gateway'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    info:
+      enabled: 'true'
+    health:
+      show-details: 'always'
